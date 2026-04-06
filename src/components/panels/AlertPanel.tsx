@@ -3,6 +3,7 @@ import { AlertTriangle, X, Bell } from 'lucide-react';
 
 const severityStyles: Record<string, { bg: string; border: string; icon: string }> = {
   critical: { bg: 'bg-destructive/10', border: 'border-destructive/30', icon: 'text-destructive' },
+  security: { bg: 'bg-destructive/20 animate-pulse-glow', border: 'border-destructive/50 shadow-glow-destructive', icon: 'text-destructive' },
   warning: { bg: 'bg-warning/10', border: 'border-warning/30', icon: 'text-warning' },
   info: { bg: 'bg-primary/10', border: 'border-primary/30', icon: 'text-primary' },
 };

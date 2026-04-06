@@ -1,8 +1,9 @@
 export type AssetType = 'drone' | 'aircraft' | 'satellite' | 'ground-vehicle' | 'naval';
-export type AssetStatus = 'active' | 'offline' | 'in-mission';
-export type MissionStatus = 'draft' | 'active' | 'completed';
-export type AlertSeverity = 'critical' | 'warning' | 'info';
+export type AssetStatus = 'active' | 'offline' | 'in-mission' | 'maintenance' | 'jammed';
+export type MissionStatus = 'draft' | 'active' | 'completed' | 'aborted' | 'failed';
+export type AlertSeverity = 'critical' | 'warning' | 'info' | 'security';
 export type RiskLevel = 'low' | 'medium' | 'high' | 'critical';
+export type ClassificationLevel = 'unclassified' | 'confidential' | 'secret' | 'top-secret';
 
 export interface Asset {
   id: string;
@@ -13,6 +14,13 @@ export interface Asset {
   speed: number;
   heading: number;
   lastUpdate: string;
+  telemetry: {
+    battery: number; // percentage
+    signalStrength: number; // percentage
+    encryptionStatus: 'secure' | 'compromised' | 'none';
+    ammunition?: number; // count if applicable
+    fuel?: number; // percentage
+  };
 }
 
 export interface Mission {
@@ -26,12 +34,14 @@ export interface Mission {
   status: MissionStatus;
   riskScore: number;
   createdAt: string;
+  classification: ClassificationLevel;
+  rulesOfEngagement: string;
 }
 
 export interface Zone {
   id: string;
   name: string;
-  type: 'operational' | 'restricted';
+  type: 'operational' | 'restricted' | 'no-fly' | 'surveillance';
   center: [number, number];
   radius: number;
   color: string;
@@ -40,7 +50,7 @@ export interface Zone {
 export interface AppEvent {
   id: string;
   timestamp: string;
-  type: 'mission_created' | 'asset_assigned' | 'status_update' | 'alert' | 'position_update';
+  type: 'mission_created' | 'asset_assigned' | 'status_update' | 'alert' | 'position_update' | 'comms_lost' | 'security_breach';
   message: string;
   severity: AlertSeverity;
 }

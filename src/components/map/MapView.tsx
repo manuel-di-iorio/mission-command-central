@@ -56,29 +56,44 @@ export function MapView() {
       zoomControl={true}
     >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       />
       <MapClickHandler />
 
       {/* Zones */}
       {zones
-        .filter((z) => (z.type === 'operational' ? showOperationalZones : showRestrictedZones))
+        .filter((z) => {
+          if (z.type === 'operational') return showOperationalZones;
+          return showRestrictedZones;
+        })
         .map((zone) => (
           <Circle
             key={zone.id}
             center={zone.center}
             radius={zone.radius}
             pathOptions={{
-              color: zone.type === 'restricted' ? 'hsl(0, 70%, 50%)' : 'hsl(185, 70%, 50%)',
-              fillColor: zone.type === 'restricted' ? 'hsl(0, 70%, 50%)' : 'hsl(185, 70%, 50%)',
-              fillOpacity: 0.08,
-              weight: 1,
-              dashArray: zone.type === 'restricted' ? '8 4' : undefined,
+              color: 
+                zone.type === 'restricted' ? 'hsl(0, 84%, 60%)' : 
+                zone.type === 'no-fly' ? 'hsl(0, 100%, 50%)' :
+                zone.type === 'surveillance' ? 'hsl(280, 100%, 50%)' :
+                'hsl(185, 70%, 50%)',
+              fillColor: 
+                zone.type === 'restricted' ? 'hsl(0, 84%, 60%)' : 
+                zone.type === 'no-fly' ? 'hsl(0, 100%, 50%)' :
+                zone.type === 'surveillance' ? 'hsl(280, 100%, 50%)' :
+                'hsl(185, 70%, 50%)',
+              fillOpacity: zone.type === 'no-fly' ? 0.15 : 0.08,
+              weight: zone.type === 'no-fly' ? 2 : 1,
+              dashArray: (zone.type === 'restricted' || zone.type === 'no-fly') ? '10 5' : undefined,
             }}
           >
             <Popup>
-              <span className="text-xs font-semibold">{zone.name}</span>
+              <div className="text-[10px] font-bold uppercase p-1">
+                <div className="mb-1 text-primary border-b border-primary/20">{zone.name}</div>
+                <div className="text-muted-foreground">TYPE: {zone.type}</div>
+                <div className="text-muted-foreground">RAD: {zone.radius / 1000} KM</div>
+              </div>
             </Popup>
           </Circle>
         ))}

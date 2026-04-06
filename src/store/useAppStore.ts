@@ -73,14 +73,24 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   updateAssetPositions: () => set((s) => ({
     assets: s.assets.map((asset) => {
-      if (asset.status === 'offline') return asset;
-      const jitter = () => (Math.random() - 0.5) * 0.01;
+      if (asset.status === 'offline' || asset.status === 'maintenance') return asset;
+      const jitter = () => (Math.random() - 0.5) * 0.005;
+      
+      // Fluctuating telemetry
+      const newTelemetry = {
+        ...asset.telemetry,
+        battery: Math.max(0, asset.telemetry.battery - (Math.random() * 0.05)),
+        signalStrength: Math.min(100, Math.max(0, asset.telemetry.signalStrength + (Math.random() - 0.5) * 2)),
+        fuel: asset.telemetry.fuel ? Math.max(0, asset.telemetry.fuel - (Math.random() * 0.02)) : undefined,
+      };
+
       return {
         ...asset,
         position: [asset.position[0] + jitter(), asset.position[1] + jitter()] as [number, number],
-        speed: asset.speed + Math.floor((Math.random() - 0.5) * 10),
-        heading: (asset.heading + Math.floor((Math.random() - 0.5) * 20) + 360) % 360,
+        speed: Math.max(0, asset.speed + Math.floor((Math.random() - 0.5) * 5)),
+        heading: (asset.heading + Math.floor((Math.random() - 0.5) * 10) + 360) % 360,
         lastUpdate: new Date().toISOString(),
+        telemetry: newTelemetry
       };
     }),
   })),

@@ -1,8 +1,8 @@
+@import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
 
 @layer base {
   :root {
@@ -113,7 +113,8 @@
   background: hsl(220 20% 5%) !important;
 }
 .leaflet-tile-pane {
-  filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+  /* Removed heavy filter as we are using native dark tiles */
+  filter: brightness(0.9) contrast(1.1) saturate(0.8);
 }
 .leaflet-control-zoom a {
   background: hsl(220 18% 12%) !important;

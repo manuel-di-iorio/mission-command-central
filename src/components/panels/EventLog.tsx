@@ -1,5 +1,5 @@
 import { useAppStore } from '@/store/useAppStore';
-import { Clock, AlertTriangle, Target, Radio, MapPin } from 'lucide-react';
+import { Clock, AlertTriangle, Target, Radio, MapPin, ShieldAlert } from 'lucide-react';
 
 const typeIcons: Record<string, React.ElementType> = {
   mission_created: Target,
@@ -7,12 +7,15 @@ const typeIcons: Record<string, React.ElementType> = {
   status_update: AlertTriangle,
   alert: AlertTriangle,
   position_update: MapPin,
+  comms_lost: Radio,
+  security_breach: ShieldAlert,
 };
 
 const severityColors: Record<string, string> = {
   info: 'border-l-primary',
   warning: 'border-l-warning',
   critical: 'border-l-destructive',
+  security: 'border-l-destructive animate-pulse bg-destructive/5',
 };
 
 export function EventLog() {
