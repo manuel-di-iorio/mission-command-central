@@ -36,6 +36,8 @@ export function MissionForm() {
       status: 'draft',
       riskScore,
       createdAt: new Date().toISOString(),
+      classification: 'confidential',
+      rulesOfEngagement: 'Standard engagement protocol.',
     };
     addMission(mission);
     setRightPanel('none');
