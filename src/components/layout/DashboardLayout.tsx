@@ -15,7 +15,10 @@ import { ComsecPanel } from '@/components/panels/ComsecPanel';
 import { C2Panel } from '@/components/panels/C2Panel';
 import { SIGINTPanel } from '@/components/panels/SIGINTPanel';
 import { LogisticsPanel } from '@/components/panels/LogisticsPanel';
-import { Satellite, BarChart3, ChevronLeft, ChevronRight, LayoutDashboard, ShieldCheck, Zap, Shield, Radio, Package, X } from 'lucide-react';
+import { ThreatMatrix } from '@/components/panels/ThreatMatrix';
+import { SecureComms } from '@/components/panels/SecureComms';
+import { WeatherPanel } from '@/components/panels/WeatherPanel';
+import { Satellite, BarChart3, ChevronLeft, ChevronRight, LayoutDashboard, ShieldCheck, Zap, Shield, Radio, Package, X, MessageSquare, Cloud, Target, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const StatusBar = () => {
@@ -36,6 +39,10 @@ const StatusBar = () => {
 
   return (
     <div className="h-10 border-b border-border bg-card flex items-center px-4 gap-6 shrink-0 z-50">
+      {/* Classification banner inline */}
+      <div className="bg-destructive/80 text-destructive-foreground px-3 py-0.5 rounded text-[8px] font-bold tracking-[0.2em] font-mono">
+        TS//SCI
+      </div>
       <div className="flex items-center gap-2.5">
         <div className="bg-primary/20 p-1 rounded">
           <Satellite className="h-4 w-4 text-primary" />
@@ -99,7 +106,9 @@ const LeftSidebar = ({ collapsed, setCollapsed }: { collapsed: boolean; setColla
           <LayoutDashboard className="h-4 w-4 text-primary" />
           <h2 className="text-xs font-bold uppercase tracking-wider text-muted-foreground font-mono">JFACC Dashboard</h2>
         </div>
+        <ThreatMatrix />
         <ComsecPanel />
+        <WeatherPanel />
         <AlertPanel />
         <AssetList />
         <div className="pt-2"><MissionList /></div>
@@ -116,6 +125,9 @@ const LeftSidebar = ({ collapsed, setCollapsed }: { collapsed: boolean; setColla
         <button onClick={() => setRightPanel('logistics')} className="w-full flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium bg-secondary hover:bg-primary/20 hover:text-primary border border-transparent hover:border-primary/30 transition-all">
           <Package className="h-3.5 w-3.5" /> Logistics
         </button>
+        <button onClick={() => setRightPanel('comms')} className="w-full flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium bg-secondary hover:bg-primary/20 hover:text-primary border border-transparent hover:border-primary/30 transition-all">
+          <MessageSquare className="h-3.5 w-3.5" /> Secure Comms
+        </button>
         <button onClick={() => setRightPanel('analytics')} className="w-full flex items-center justify-center gap-2 py-1.5 rounded-md text-[10px] font-medium bg-secondary hover:bg-primary/20 hover:text-primary border border-transparent hover:border-primary/30 transition-all">
           <BarChart3 className="h-3.5 w-3.5" /> Intel Analytics
         </button>
@@ -131,19 +143,19 @@ const RightPanel = () => {
   if (rightPanel === 'none') return null;
 
   const panelTitle: Record<string, string> = {
-    analytics: 'Intel Analytics', c2: 'Command & Control', sigint: 'Signal Intelligence', logistics: 'Logistics & Supply',
+    analytics: 'Intel Analytics', c2: 'Command & Control', sigint: 'Signal Intelligence', logistics: 'Logistics & Supply', comms: 'Secure Communications',
   };
 
-  const showHeader = ['analytics', 'c2', 'sigint', 'logistics'].includes(rightPanel);
+  const showHeader = ['analytics', 'comms'].includes(rightPanel);
 
   return (
-    <div className="w-80 border-l border-border bg-card shrink-0 overflow-y-auto">
-      {rightPanel === 'asset-detail' && <AssetDetail />}
-      {rightPanel === 'mission-detail' && <MissionDetail />}
-      {rightPanel === 'mission-form' && <MissionForm />}
-      {rightPanel === 'order-form' && <OrderForm />}
+    <div className="w-80 border-l border-border bg-card shrink-0 overflow-hidden flex flex-col">
+      {rightPanel === 'asset-detail' && <div className="overflow-y-auto flex-1"><AssetDetail /></div>}
+      {rightPanel === 'mission-detail' && <div className="overflow-y-auto flex-1"><MissionDetail /></div>}
+      {rightPanel === 'mission-form' && <div className="overflow-y-auto flex-1"><MissionForm /></div>}
+      {rightPanel === 'order-form' && <div className="overflow-y-auto flex-1"><OrderForm /></div>}
       {rightPanel === 'analytics' && (
-        <div className="p-4">
+        <div className="p-4 overflow-y-auto flex-1">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-semibold">{panelTitle[rightPanel]}</h2>
             <button onClick={() => setRightPanel('none')} className="text-muted-foreground hover:text-foreground"><X className="h-4 w-4" /></button>
@@ -151,9 +163,10 @@ const RightPanel = () => {
           <AnalyticsPanel />
         </div>
       )}
-      {rightPanel === 'c2' && <C2Panel />}
-      {rightPanel === 'sigint' && <SIGINTPanel />}
-      {rightPanel === 'logistics' && <LogisticsPanel />}
+      {rightPanel === 'c2' && <div className="overflow-y-auto flex-1"><C2Panel /></div>}
+      {rightPanel === 'sigint' && <div className="overflow-y-auto flex-1"><SIGINTPanel /></div>}
+      {rightPanel === 'logistics' && <div className="overflow-y-auto flex-1"><LogisticsPanel /></div>}
+      {rightPanel === 'comms' && <div className="flex-1 flex flex-col overflow-hidden"><SecureComms /></div>}
     </div>
   );
 };
