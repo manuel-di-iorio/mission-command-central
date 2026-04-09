@@ -61,24 +61,24 @@ export default function Login({ onAuthenticated }: LoginProps) {
                 <AlertTriangle className="h-12 w-12 text-warning shrink-0 mt-1" />
                 <div className="space-y-4">
                   <h1 className="text-xl font-bold text-warning tracking-wide">
-                    ⚠ U.S. GOVERNMENT WARNING ⚠
+                    ⚠ UNITED GLOBAL COMMAND WARNING ⚠
                   </h1>
                   <div className="text-sm text-foreground/80 space-y-3 leading-relaxed font-mono">
                     <p>
-                      You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+                      You are accessing a United Global Command (UGC) Information System (IS) that is provided for UGC-authorized use only.
                     </p>
                     <p>
                       By using this IS (which includes any device attached to this IS), you consent to the following conditions:
                     </p>
                     <ul className="list-disc pl-6 space-y-2 text-foreground/70">
-                      <li>The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.</li>
-                      <li>At any time, the USG may inspect and seize data stored on this IS.</li>
-                      <li>Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.</li>
-                      <li>This IS includes security measures (e.g., authentication and access controls) to protect USG interests — not for your personal benefit or privacy.</li>
+                      <li>The UGC routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.</li>
+                      <li>At any time, the UGC may inspect and seize data stored on this IS.</li>
+                      <li>Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any UGC-authorized purpose.</li>
+                      <li>This IS includes security measures (e.g., authentication and access controls) to protect UGC interests — not for your personal benefit or privacy.</li>
                       <li>Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications.</li>
                     </ul>
                     <p className="text-warning/90 font-bold pt-2">
-                      Unauthorized access to this system is a violation of U.S.C. Title 18, Section 1030 (Computer Fraud and Abuse Act) and may result in criminal prosecution.
+                      Unauthorized access to this system is a violation of UGC Digital Sovereignty Act, Article 42 and may result in criminal prosecution.
                     </p>
                   </div>
                 </div>
@@ -264,8 +264,8 @@ export default function Login({ onAuthenticated }: LoginProps) {
                 <div className="flex items-center gap-3 bg-primary/5 border border-primary/20 rounded-lg px-4 py-3">
                   <Fingerprint className="h-5 w-5 text-primary shrink-0" />
                   <div>
-                    <p className="text-[10px] font-bold text-foreground">CAC / Smart Card Detected</p>
-                    <p className="text-[9px] text-muted-foreground font-mono">PKI Certificate: DoD CA-59 // Valid</p>
+                    <p className="text-[10px] font-bold text-foreground">Secure Identity Token Detected</p>
+                    <p className="text-[9px] text-muted-foreground font-mono">PKI Certificate: UGC-DEF-01 // Valid</p>
                   </div>
                 </div>
 
@@ -283,7 +283,7 @@ export default function Login({ onAuthenticated }: LoginProps) {
               <div className="space-y-5">
                 <div className="text-center space-y-2 bg-secondary/30 border border-border rounded-lg p-4">
                   <p className="text-[11px] text-foreground font-mono">
-                    Token sent to authorized NSA-approved device
+                    Token sent to authorized UGC-certified device
                   </p>
                   <p className="text-[9px] text-muted-foreground font-mono">
                     Device: ████-████-{username.slice(-4) || '0451'} // RSA SecurID

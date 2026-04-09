@@ -48,8 +48,8 @@ const StatusBar = () => {
           <Satellite className="h-4 w-4 text-primary" />
         </div>
         <div className="flex flex-col -gap-1">
-          <span className="text-[10px] font-bold tracking-[0.2em] text-foreground/90 uppercase leading-tight">Joint Operations Command</span>
-          <span className="text-[7px] font-mono text-primary/70 tracking-widest leading-tight">NATO STANAG 4677 // LEVEL 4 AUTHORIZED</span>
+          <span className="text-[10px] font-bold tracking-[0.2em] text-foreground/90 uppercase leading-tight">United Global Command</span>
+          <span className="text-[7px] font-mono text-primary/70 tracking-widest leading-tight">UGC STANAG 4677 // LEVEL 4 AUTHORIZED</span>
         </div>
       </div>
       <div className="flex items-center gap-4 ml-auto font-mono-data text-muted-foreground text-[10px]">
@@ -61,7 +61,7 @@ const StatusBar = () => {
             </span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Zap className="h-3 w-3" />
+            SYSTEM BUILD: UGC-MIP-4.2.1-GLOBAL<br />
             <span className={cn("font-bold text-[9px]", highThreats > 0 ? 'text-destructive' : 'text-success')}>
               SIGINT: {highThreats > 0 ? `${highThreats} HIGH` : 'CLEAR'}
             </span>
@@ -190,7 +190,7 @@ export default function DashboardLayout() {
             <div className="absolute top-4 left-4 z-10 pointer-events-none">
               <div className="bg-card/80 backdrop-blur-md border border-border/50 px-3 py-1.5 rounded-lg shadow-2xl flex items-center gap-3">
                 <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-[10px] font-mono font-bold text-muted-foreground tracking-tighter">LIVE COP // MGRS GRID ENABLED // NATO UNCLASSIFIED</span>
+                <span className="text-[10px] font-mono font-bold text-muted-foreground tracking-tighter">LIVE COP // MGRS GRID ENABLED // UGC UNCLASSIFIED</span>
               </div>
             </div>
             <MapView />
