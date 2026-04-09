@@ -13,7 +13,7 @@ interface AppState {
   orders: AssetOrder[];
   selectedAssetId: string | null;
   selectedMissionId: string | null;
-  rightPanel: 'none' | 'asset-detail' | 'mission-detail' | 'mission-form' | 'analytics' | 'order-form' | 'logistics' | 'c2' | 'sigint';
+  rightPanel: 'none' | 'asset-detail' | 'mission-detail' | 'mission-form' | 'analytics' | 'order-form' | 'logistics' | 'c2' | 'sigint' | 'comms';
   showOperationalZones: boolean;
   showRestrictedZones: boolean;
   showSIGINT: boolean;
