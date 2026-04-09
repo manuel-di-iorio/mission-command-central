@@ -32,6 +32,8 @@ export function SecureComms() {
   const sendMessage = () => {
     if (!newMsg.trim()) return;
     addEvent({
+      id: `e${Date.now()}`,
+      timestamp: new Date().toISOString(),
       type: 'SITREP',
       message: `[${channel}] JOC-OPERATOR: ${newMsg}`,
       severity: 'info',
