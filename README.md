@@ -2,8 +2,6 @@
 
 Mission Command Central is a high-fidelity tactical monitoring and mission coordination dashboard designed for modern joint operation environments. It provides a comprehensive Common Operational Picture (COP) for monitoring assets, intelligence, and mission lifecycle in real-time.
 
-![Mission Command Preview](public/placeholder.svg) *(Replace with actual screenshot)*
-
 ## 🛡️ Core Capabilities
 
 - **Common Operational Picture (COP):** Real-time tracking of multi-domain assets (Air, Land, Sea, Space) via integrated GIS mapping.
