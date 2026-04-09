@@ -191,7 +191,7 @@ export default function Login({ onAuthenticated }: LoginProps) {
           </div>
 
           <div className="absolute bottom-6 text-[9px] text-muted-foreground/50 font-mono text-center">
-            SYSTEM BUILD: JOC-MIP-4.2.1-NATO<br />
+            SYSTEM BUILD: UGC-MIP-4.2.1-GLOBAL<br />
             TERMINAL ID: {Math.random().toString(36).slice(2, 10).toUpperCase()}
           </div>
         </div>

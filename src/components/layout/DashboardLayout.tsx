@@ -61,7 +61,7 @@ const StatusBar = () => {
             </span>
           </div>
           <div className="flex items-center gap-1.5">
-            SYSTEM BUILD: UGC-MIP-4.2.1-GLOBAL<br />
+            <Zap className="h-3 w-3" />
             <span className={cn("font-bold text-[9px]", highThreats > 0 ? 'text-destructive' : 'text-success')}>
               SIGINT: {highThreats > 0 ? `${highThreats} HIGH` : 'CLEAR'}
             </span>
